@@ -12,6 +12,13 @@
     <artifactId>product</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <artifactId>rabbitmq</artifactId>
+            <groupId>com.yzm</groupId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <artifactId>api</artifactId>
             <groupId>com.yzm</groupId>

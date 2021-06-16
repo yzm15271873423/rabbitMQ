@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api" />
+        <module name="mapper" />
         <module name="search" />
-        <module name="product" />
+        <module name="api" />
         <module name="pojo" />
         <module name="provider" />
-        <module name="mapper" />
+        <module name="product" />
+        <module name="receive" />
+        <module name="rabbitmq" />
         <module name="commons" />
       </profile>
     </annotationProcessing>
@@ -25,6 +27,8 @@
       <module name="pojo" options="-parameters" />
       <module name="product" options="-parameters" />
       <module name="provider" options="-parameters" />
+      <module name="rabbitmq" options="-parameters" />
+      <module name="receive" options="-parameters" />
       <module name="search" options="-parameters" />
     </option>
   </component>

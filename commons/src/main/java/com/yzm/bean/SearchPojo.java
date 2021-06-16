@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class SearchPojo implements Serializable {
 
+    public static final long serialVersionUID=1L;
+
     @Field
     private Integer id;
     @Field

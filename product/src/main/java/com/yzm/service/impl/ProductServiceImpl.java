@@ -1,10 +1,14 @@
 package com.yzm.service.impl;
 
 import com.yzm.bean.Product;
+import com.yzm.bean.SearchPojo;
+import com.yzm.comonent.Sender;
 import com.yzm.dubbo.service.ProductDubboService;
 import com.yzm.service.ProductService;
 import com.yzm.utils.HttpClientUtil;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -17,6 +21,11 @@ import java.util.Random;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private Sender sender;
+
+
     @Reference
     private ProductDubboService productDubboService;
 
@@ -30,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
         Integer i = productDubboService.insertProduct(product);
         if (i==1){
             //数据同步到solr中
-            Map<String,String> map = new HashMap<>();
+           /* Map<String,String> map = new HashMap<>();
             map.put("id",product.getId()+"");
             map.put("name",product.getName()+"");
             map.put("price",product.getPrice()+"");
@@ -41,7 +50,13 @@ public class ProductServiceImpl implements ProductService {
             System.out.println("result:"+resultBoolean);
             if(!resultBoolean){
                 //判断为false，把新加到数据库的数据删除。
-            }
+            }*/
+
+            SearchPojo sp = new SearchPojo();
+            BeanUtils.copyProperties(product,sp);
+            sender.send(sp);
+
+
         }
 
         return i;
